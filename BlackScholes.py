@@ -27,20 +27,20 @@ def black_scholes(S, X, T, r, sigma):
 # Example values for the Tesla stock (these would need to be updated with real values)
 # Assuming these example values:
 # Current stock price (S)
-S = 800 #USD
+S = 9.9867 #USD
 
 # Strike price (X)
-X = 850 # USD
+X = 10.48083960978591 # USD
 
 # Time to maturity (T - t), assuming this is for an option expiring in 1 year
-T = 1 
+T = 21/365 
 
 # Risk-free interest rate (r), assuming 1%
-r = 0.01 
+r = 0.03
 
 # Volatility of the stock's return (sigma), assuming 30%
-sigma = 0.30
+sigma = 0.5527
 
 # Calculate the call and put prices
 call_price, put_price = black_scholes(S, X, T, r, sigma)
-call_price, put_price
+print("The call value of the option is ", call_price)

@@ -3,7 +3,7 @@
 # Monte-Carlo Simulation
 
 import math
-import NumPy as np 
+import numpy as np 
 import pandas as pd 
 import datetime
 import scipy.stats as stats 
@@ -29,22 +29,20 @@ from pandas_datareader import data as pdr
 
 # Initial Stock Conditions - Can pull from Yahoo Finance for TSLA
 # Below stock is a real yahoo finance option, expires on feb 2nd 
-Stock_P = 190.93 #stock price
-Strike_P = 187.5 #strike price
-vol = 0.5066    #implied volatility (in %)
-r = 0.01        #risk-free rate (%)
+Stock_P = 9.9867 #stock price
+Strike_P = 10.48083960978591 #strike price
+vol = 0.5527    #implied volatility (in %)
+r = 0.03        #risk-free rate (%)
 N = 10          #number of times steps
-M = 10000       #number of simulations
+M = 10_000       #number of simulations
 
-market_price = 5.95 #also pulled from Yahoo Finance
-T = ((datetime.date(2024,2,2)-datetime.date.today()).days+1)/365 #The +1 is because you can still trade on the day the option expires
+T = 21/365 #The +1 is because you can still trade on the day the option expires
 # Above gives time in years
 
 # Constants. These apply to the formula -----> delta(x) = u*delta(t) + sigma*delta(z)
 dt = T/N                                #   timestep. I.E., if T is 5 years and N is 10, this will give each time step as 0.5 years
 u_dt = (r-0.5*vol**2)*dt                #   drift term (u)  
 vol_sqrt_dt = vol*np.sqrt(dt)           #   From equation on line 43, delta(z) becomes sqrt(delta(t)) when time step is applied
-lnStock_P = np.log(Stock_P)           #   gives the natural log of the stock price. This goes to the formula below   
                                         #   -----> StockPriceNow = StockPricePrevious*e^(u*delta(t) + sigma*delta(z))
 # Standard error placeholders
 totalCT = 0
@@ -52,7 +50,7 @@ totalCT2 = 0
 
 # MONTE CARLO METHOD
 for i in range(M):  #M is total simulations
-    lnStock_P = lnStock_P
+    lnStock_P = np.log(Stock_P)
     for j in range(N):  #N is total timesteps
         lnStock_P = lnStock_P + u_dt + vol_sqrt_dt*np.random.normal()
 

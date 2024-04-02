@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import tqdm
 
 # Simulation Parameters:
-num_simulations = 10_000  # Number of simulations to run
+num_simulations = 100_000  # Number of simulations to run
 prediction_steps = 100  # Number of steps in each simulation
 prediction_history = 365 # Number of days before simulation to use as predicition data
 graph_history = 100 # Number of days before simulation to graph
